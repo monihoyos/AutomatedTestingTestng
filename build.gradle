@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id("io.qameta.allure") version "2.11.2"
+}
+
+allure{
+    adapter.autoconfigure=true
+    version '2.20.1'
+
+    useTestNG(){
+     version '2.20.1'
+    }
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.1'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.2'
+
+}
+
+/*test {
+    useTestNG()
+        dependsOn cleanTest
+        suites 'src/test/resources/helloWorld.xml'
+}*/
+test {
+    useTestNG() {
+        suiteXmlBuilder().suite(name: 'Suite helloWorld') {
+            test(name: 'test') {
+                classes('') {
+                    'class'(name: 'TestHelloWorld')
+                }
+            }
+        }
+    }
+}
+
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
+}
