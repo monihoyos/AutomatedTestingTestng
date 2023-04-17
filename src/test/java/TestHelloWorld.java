@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -19,40 +20,47 @@ public class TestHelloWorld {
 
     @BeforeTest
     void setupAll() {
+        Allure.step("Adding arguments to chrome driver");
         WebDriverManager.chromedriver().setup();
         options=new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("lang=en");
         options.addArguments("--start-maximized");
-        options.addArguments("--headless=new");
+        //options.addArguments("--headless=new");
     }
 
     @BeforeMethod
     void setup() {
+        Allure.step("Starting Chrome Browser");
         driver = new ChromeDriver(options);
     }
 
     @AfterMethod
     void teardown() {
+
+        Allure.step("Closing browser");
         driver.quit();
     }
 
-    @Test
-    @Description("Test case: verify when searching word: hello word, results are being shown")
+    @Test (description="Scenario to check if hello word is shown on Google search")
+    @Description("Test case1: verify when searching word: hello word, results are being shown")
     void test1() {
+        Allure.step("Open Url");
         openUrl("https://www.google.com/");
+        Allure.step("Entering word hello world");
         searchText("hello world");
+        Allure.step("Checking results");
         isResultDisplayed();
     }
 
     @Test
-    @Description("Test case: verify when searching word: testing, results are being shown")
+    @Description("Test case2: verify when searching word: testing, results are being shown")
     void test2() {
         openUrl("https://www.google.com/");
         searchText("testing");
         isResultDisplayed();
     }
-    @Step("Entering value on a search box")
+    @Step("Entering value on a search text box")
     public void searchText(String texto){
         WebElement Search= getSearchBox();
         Search.sendKeys(texto);
