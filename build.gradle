@@ -34,17 +34,6 @@ test {
         outputDirectory=file("$projectDir/testngOutput")
     }
 }
-/*test {
-    useTestNG() {
-        suiteXmlBuilder().suite(name: 'Suite helloWorld') {
-            test(name: 'test') {
-                classes('') {
-                    'class'(name: 'TestHelloWorld')
-                }
-            }
-        }
-    }
-}*/
 
 tasks.withType(Test) {
     testLogging {
