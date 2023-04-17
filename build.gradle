@@ -24,15 +24,17 @@ dependencies {
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.1'
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.2'
-
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.20.1'
 }
 
-/*test {
-    useTestNG()
-        dependsOn cleanTest
-        suites 'src/test/resources/helloWorld.xml'
-}*/
 test {
+    useTestNG(){
+        suites 'src/test/resources/suites/helloWorld.xml'
+        useDefaultListeners=true
+        outputDirectory=file("$projectDir/testngOutput")
+    }
+}
+/*test {
     useTestNG() {
         suiteXmlBuilder().suite(name: 'Suite helloWorld') {
             test(name: 'test') {
@@ -42,7 +44,7 @@ test {
             }
         }
     }
-}
+}*/
 
 tasks.withType(Test) {
     testLogging {
