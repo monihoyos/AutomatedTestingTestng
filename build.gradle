@@ -25,6 +25,7 @@ dependencies {
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.2'
     implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.20.1'
+    implementation group: 'app.getxray', name: 'xray-testng-extensions', version: '0.1.0'
 }
 
 test {

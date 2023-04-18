@@ -1,3 +1,4 @@
+import app.getxray.xray.testng.annotations.XrayTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
@@ -44,7 +45,8 @@ public class TestHelloWorld {
 
     @Test (description="Scenario to check if hello word is shown on Google search")
     @Description("Test case1: verify when searching word: hello word, results are being shown")
-    void test1() {
+    @XrayTest(key="TNP-22")
+    void testToSearchHelloWorldInChrome() {
         Allure.step("Open Url");
         openUrl("https://www.google.com/");
         Allure.step("Entering word hello world");
