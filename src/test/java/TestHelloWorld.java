@@ -25,7 +25,7 @@ public class TestHelloWorld {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("lang=en");
         options.addArguments("--start-maximized");
-        //options.addArguments("--headless=new");
+        options.addArguments("--headless=new");
     }
 
     @BeforeMethod
